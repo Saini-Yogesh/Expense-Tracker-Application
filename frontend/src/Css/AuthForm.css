@@ -73,3 +73,28 @@
 .auth-form-link:hover {
   text-decoration: underline;
 }
+
+.auth-error {
+  color: red;
+  font-size: 0.85rem;
+  margin-top: -8px;
+  margin-bottom: 10px;
+}
+
+.password-strength {
+  font-size: 0.85rem;
+  margin-top: 5px;
+  font-weight: bold;
+}
+
+.password-strength.weak {
+  color: red;
+}
+
+.password-strength.medium {
+  color: orange;
+}
+
+.password-strength.strong {
+  color: green;
+}

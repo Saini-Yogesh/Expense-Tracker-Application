@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
-import { FaEdit, FaTrash } from 'react-icons/fa';
+import { useState } from 'react';
+import { FaEdit } from 'react-icons/fa';
 import "../Css/ExpenseList.css";
+import ActionDeleteButtons from './ActionDeleteButtons'; // adjust the path as needed
 
 const ExpenseList = ({ expenses, onDelete, onEdit }) => {
     const [filterCategory, setFilterCategory] = useState('All');
@@ -81,7 +82,10 @@ const ExpenseList = ({ expenses, onDelete, onEdit }) => {
                                 <td>{exp.category}</td>
                                 <td className="action-buttons">
                                     <FaEdit className="icon edit" onClick={() => onEdit(exp)} />
-                                    <FaTrash className="icon delete" onClick={() => onDelete(exp._id)} />
+                                    <ActionDeleteButtons
+                                        onDelete={onDelete}
+                                        id={exp._id}
+                                    />
                                 </td>
                             </tr>
                         ))}
@@ -110,7 +114,10 @@ const ExpenseList = ({ expenses, onDelete, onEdit }) => {
                         </div>
                         <div className="card-actions">
                             <FaEdit className="icon edit" onClick={() => onEdit(exp)} />
-                            <FaTrash className="icon delete" onClick={() => onDelete(exp._id)} />
+                            <ActionDeleteButtons
+                                onDelete={onDelete}
+                                id={exp._id}
+                            />
                         </div>
                     </div>
                 ))}
@@ -119,7 +126,7 @@ const ExpenseList = ({ expenses, onDelete, onEdit }) => {
 
             <div className="pagination">
                 <button onClick={() => handlePageChange(currentPage - 1)} disabled={currentPage === 1 || totalPages === 0}>Previous</button>
-                <span>Page {currentPage} of {totalPages}</span>
+                <span>Page {(totalPages === 0) ? 0 : currentPage} of {totalPages}</span>
                 <button onClick={() => handlePageChange(currentPage + 1)} disabled={currentPage === totalPages || totalPages === 0}>Next</button>
             </div>
         </div>
