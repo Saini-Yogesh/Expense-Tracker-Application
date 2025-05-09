@@ -2,8 +2,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 83.5vh;
-  background-color: #f4f7fc;
+  min-height: 80vh;
   padding: 20px;
 }
 
@@ -30,6 +29,7 @@
   border: 1px solid #ddd;
   border-radius: 4px;
   font-size: 16px;
+  box-sizing: border-box;
 }
 
 .auth-form-input:focus {
