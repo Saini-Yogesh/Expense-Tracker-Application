@@ -6,16 +6,15 @@
   align-items: center;
   background-color: #222;
   color: white;
-  padding: 0.75rem 2rem;
+  padding: 0px 2rem;
   position: relative;
   z-index: 1000;
 }
 
-.navbar-logo img {
-  height: 40px;
-  width: 40px;
-  object-fit: cover;
-  border-radius: 50%;
+.navbar-logo {
+  cursor: pointer;
+  font-weight: bolder;
+  font-size: 24px;
 }
 
 .menu-toggle {
@@ -40,6 +39,11 @@
   display: flex;
   gap: 1rem;
   align-items: center;
+}
+
+.navbar-button:hover,
+.navbar-logo :hover {
+  color: #1abc9c;
 }
 
 /* Mobile styles */

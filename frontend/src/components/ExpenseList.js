@@ -118,9 +118,9 @@ const ExpenseList = ({ expenses, onDelete, onEdit }) => {
 
 
             <div className="pagination">
-                <button onClick={() => handlePageChange(currentPage - 1)} disabled={currentPage === 1}>Previous</button>
+                <button onClick={() => handlePageChange(currentPage - 1)} disabled={currentPage === 1 || totalPages === 0}>Previous</button>
                 <span>Page {currentPage} of {totalPages}</span>
-                <button onClick={() => handlePageChange(currentPage + 1)} disabled={currentPage === totalPages}>Next</button>
+                <button onClick={() => handlePageChange(currentPage + 1)} disabled={currentPage === totalPages || totalPages === 0}>Next</button>
             </div>
         </div>
     );

@@ -2,7 +2,6 @@ import React, { useContext, useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
 import { FaBars, FaTimes } from 'react-icons/fa';
-import logo from './logo.png'; // Adjust path if needed
 import '../Css/Navbar.css';
 
 const Navbar = () => {
@@ -31,7 +30,7 @@ const Navbar = () => {
     return (
         <nav className="navbar">
             <div className="navbar-logo" onClick={() => navigate('/')}>
-                <img src={logo} alt="Expense Tracker" />
+                <p>Expense tracker</p>
             </div>
 
             <div className="menu-toggle" onClick={() => setMenuOpen(!menuOpen)}>
@@ -43,7 +42,7 @@ const Navbar = () => {
                     <>
                         <button className="navbar-button" onClick={() => { setMenuOpen(false); navigate('/about'); }}>About Us</button>
                         <button className="navbar-button" onClick={() => { setMenuOpen(false); navigate('/summary'); }}>Summary</button>
-                        <button className="navbar-button" onClick={() => { setMenuOpen(false); navigate('/profile'); }}>Profile</button>
+                        <button className="navbar-button" onClick={() => { setMenuOpen(false); navigate('/'); }}>Dashboard</button>
                         <button className="navbar-button" onClick={handleLogout}>Logout</button>
                     </>
                 ) : (
