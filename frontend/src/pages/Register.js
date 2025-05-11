@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { register } from '../api/api';
+import { AuthContext } from '../context/AuthContext';  // Assuming you have AuthContext set up
 import '../Css/AuthForm.css';
 import { toast } from 'react-toastify';
 
@@ -8,7 +9,16 @@ function Register() {
     const [form, setForm] = useState({ username: '', email: '', password: '' });
     const [errors, setErrors] = useState({});
     const [showPassword, setShowPassword] = useState(false);
+    const [loading, setLoading] = useState(false); // Loading state
+    const { token } = useContext(AuthContext);  // Accessing token from context
     const navigate = useNavigate();
+
+    // Redirect if already logged in
+    useEffect(() => {
+        if (token) {
+            navigate('/');  // Redirect to home/dashboard if logged in
+        }
+    }, [token, navigate]);
 
     const validate = () => {
         const newErrors = {};
@@ -41,13 +51,21 @@ function Register() {
         e.preventDefault();
         if (!validate()) return;
 
-        const res = await register(form);
-        if (res.message === 'User registered successfully') {
-            toast.success('Registration successful! Redirecting to login...');
-            navigate('/login');
-        } else {
-            toast.error(res.message || 'Registration failed');
+        setLoading(true);
+
+        try {
+            const res = await register(form);
+            if (res.message === 'User registered successfully') {
+                toast.success('Registration successful! Redirecting to login...');
+                navigate('/login');
+            } else {
+                toast.error(res.message || 'Registration failed');
+            }
+        } catch (error) {
+            toast.error(error.message || 'Registration failed. Please try again.');
         }
+
+        setLoading(false); // Reset loading state
     };
 
     return (
@@ -104,7 +122,18 @@ function Register() {
                     </p>
                 )}
 
-                <button type="submit" className="auth-form-submit">Sign Up</button>
+                <button
+                    type="submit"
+                    className="auth-form-submit"
+                    disabled={loading} // Disable button when loading
+                    style={{
+                        backgroundColor: loading ? '#d3d3d3' : '#007BFF',
+                        cursor: loading ? 'not-allowed' : 'pointer',
+                        color: loading ? '#151515' : '#fff',
+                    }}
+                >
+                    {loading ? 'Signing Up...' : 'Sign Up'}
+                </button>
 
                 <div className="auth-form-footer">
                     <p>Already have an account? <span onClick={() => navigate('/login')} className="auth-form-link">Login</span></p>
