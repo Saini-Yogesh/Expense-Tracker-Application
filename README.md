@@ -217,6 +217,246 @@ npm start
 
 ---
 
+## 🧪 Usage Guide
+
+### ✅ Register a User
+
+- **Navigate to:** `/register`  
+- **Input:** `username`, `email`, and `password`  
+- Upon successful registration, you'll be logged in automatically.
+
+---
+
+### ✅ Login
+
+- **Navigate to:** `/login`  
+- Enter your email and password to access your dashboard.
+
+---
+
+### ✅ Add an Expense
+
+- Go to **Dashboard**
+- Click **Add Expense** and enter:
+  - `Title`
+  - `Amount`
+  - `Category`
+  - `Date`
+- Click **Submit** to save the expense.
+
+---
+
+### ✅ View and Edit Expenses
+
+- All expenses are listed with **pagination**
+- Features:
+  - Filter by **Category** 
+  - **Edit** or **Delete** each entry
+
+---
+
+### ✅ Summary Page
+
+- Navigate to **Summary Tab** to see:
+  - 🥧 **Pie Chart** for category-wise spending
+  - 📊 **Bar Chart** comparing expenses over time
+  - 📆 **Date Range Filters**:
+    - Last 7 Days, Last 30 Days, This Month, This Year, Last Year, All Time, Custom
+
+---
+
+## 🌐 API Documentation
+
+### 🔐 Auth Routes
+
+| Method | Endpoint    | Description            |
+|--------|-------------|------------------------|
+| POST   | `/register` | Register a new user    |
+| POST   | `/login`    | Login user & get token |
+| GET    | `/me`       | Get logged-in user     |
+
+> 🔑 Requires JWT token in `Authorization` header for `/me` route.
+
+
+# 💰 Expense Tracker API
+
+This is a sample RESTful API for user authentication and expense management. All routes follow standard HTTP methods and require appropriate headers where necessary.
+
+---
+
+## 🧪 Sample Requests & Responses
+
+### 📍 POST `/register`
+
+**Request:**
+
+```json
+{
+  "username": "John Doe",
+  "email": "john@example.com",
+  "password": "123456"
+}
+```
+
+**Response:**
+
+```json
+{
+  "message": "User registered successfully"
+}
+```
+> Redirect to login page
+```
+
+---
+
+### 📍 POST `/login`
+
+**Request:**
+
+```json
+{
+  "email": "john@example.com",
+  "password": "123456"
+}
+```
+
+**Response:**
+
+```json
+{
+  "token": "jwt_token",
+}
+```
+
+---
+
+## 📊 Expense Routes
+
+> All routes require `Authorization: Bearer <jwt_token>` header.
+
+| Method | Endpoint               | Description            |
+|--------|------------------------|------------------------|
+| GET    | `/api/expenses/`       | Get all expenses       |
+| POST   | `/api/expenses/`       | Add a new expense      |
+| PUT    | `/api/expenses/:id`    | Update expense by ID   |
+| DELETE | `/api/expenses/:id`    | Delete expense by ID   |
+
+---
+
+## 🧪 Sample Payloads
+
+### 📍 POST `/api/expenses/`
+
+**Request:**
+
+```json
+{
+  "title": "Electricity Bill",
+  "amount": 1200,
+  "category": "Rent",
+  "date": "2024-04-10"
+}
+```
+
+**Response:**
+
+```json
+{
+  "_id": "expense_id",
+  "title": "Electricity Bill",
+  "amount": 1200,
+  "category": "Rent",
+  "date": "2024-04-10",
+  "user": "user_id"
+}
+```
+
+---
+
+### 📍 PUT `/api/expenses/:id`
+
+**Request:**
+
+```json
+{
+  "title": "Updated Title",
+  "amount": 1000,
+  "category": "Utilities",
+  "date": "2024-04-20"
+}
+```
+
+**Response:**
+
+```json
+{
+  "_id": "expense_id",
+  "title": "Updated Title",
+  "amount": 1000,
+  "category": "Utilities",
+  "date": "2024-04-20",
+  "user": "user_id"
+}
+```
+
+---
+
+### 📍 GET `/api/expenses/`
+
+**Response:**
+
+```json
+[
+  {
+    "_id": "exp_id",
+    "title": "Groceries",
+    "amount": 1500,
+    "category": "Food",
+    "date": "2024-04-15",
+    "user": "user_id"
+  },
+  {
+    "_id": "exp_id_2",
+    "title": "Electricity Bill",
+    "amount": 1200,
+    "category": "Rent",
+    "date": "2024-04-10",
+    "user": "user_id"
+  }
+]
+```
+---
+
+### 📍 DELETE `/api/expenses/:id`
+
+**Request:**  
+No request body required.
+
+**Response:**
+
+```json
+{
+  "message": "Expense deleted successfully"
+}
+```
+
+---
+
+## 🔐 Authentication
+
+Make sure to include the following header for all protected routes:
+
+```
+Authorization: Bearer <jwt_token>
+```
+
+---
+
+Happy coding! 🚀
+
+
+
 
 ## 🧪 Testing
 
