@@ -306,11 +306,10 @@ This is a sample RESTful API for user authentication and expense management. All
 }
 ```
 > Redirect to login page
-```
 
 ---
 
-### 📍 POST `/login`
+### 📍POST `/login`
 
 **Request:**
 
