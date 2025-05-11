@@ -128,6 +128,8 @@ REACT_APP_BASE_URL=http://localhost:5000/api
 
 > Replace the base URL with your deployed backend URL if hosting.
 
+---
+
 ## ▶️ Getting Started
 
 ### 1. Clone the Repository
@@ -191,6 +193,8 @@ Run the following command to start the backend server:
 ```bash
 npm start
 ```
+
+---
 
 ## 📦 Dependencies
 
